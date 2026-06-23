@@ -4,7 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aksh Academy Home</title>
+  
   <style>
+
+.dev-footer {
+  padding: 18px 7vw 28px;
+  text-align: center;
+  background: white;
+  border-top: 1px solid #e9edf5;
+}
+
+.dev-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #5b0066;
+  font-weight: 900;
+  letter-spacing: .04em;
+  font-size: 1rem;
+  animation: footerPulse 2.5s ease-in-out infinite;
+}
+
+.dev-brand img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(125,0,146,.18);
+}
+
+@keyframes footerPulse {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: .92; }
+}
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
@@ -387,7 +420,7 @@
   <header class="navbar">
     <div class="brand">
       <img src="logo.png" alt="aksh Academy Logo">
-      <span>aksh Academy</span>
+      <span>Aksh Academy</span>
     </div>
     <nav class="navlinks">
       <a href="#home">Home</a>
@@ -400,7 +433,7 @@
 
   <main id="home" class="hero">
     <div>
-      <h1><span class="shine-text">Warm welcome</span> to aksh Academy web page.</h1>
+      <h1><span class="shine-text">Warm welcome</span> to Aksh Academy web page.</h1>
       <p>
         Here you came to know how we make students future. We provide disciplined coaching,
         expert faculty, personal attention, regular tests, and a motivating study environment.
@@ -413,14 +446,14 @@
     </div>
 
     <div class="hero-card">
-      <img src="logo.png" alt="aksh Academy Banner">
+      <img src="logo.png" alt="Aksh Academy Banner">
     </div>
   </main>
 
   <section class="welcome-box">
     <h2>Building confidence, concepts, and career readiness.</h2>
     <p>
-      At aksh Academy, we focus on academic growth, exam strategy, and strong fundamentals.
+      At Aksh Academy, we focus on academic growth, exam strategy, and strong fundamentals.
       Our teaching system is designed to help students understand better, revise smarter,
       and perform with confidence.
     </p>
@@ -468,7 +501,7 @@
   </section>
 
   <section class="section" id="about">
-    <h2 class="section-title">Why aksh Academy?</h2>
+    <h2 class="section-title">Why Aksh Academy?</h2>
     <p class="section-sub">
       We combine expert teaching, disciplined study plans, modern learning tools,
       and regular feedback to create a trusted coaching experience.
@@ -477,14 +510,14 @@
 
   <section class="cta" id="contact">
     <div>
-      <h3>Join aksh Academy Today</h3>
+      <h3>Join akshAcademy Today</h3>
       <p>Start your journey with a professional institute feel, smart guidance, and result-focused mentoring.</p>
     </div>
     <a class="btn btn-primary" href="tel:+917017300540">Call for Admission</a>
   </section>
 
   <footer class="footer">
-    © 2026 aksh Academy. All Rights Reserved.
+    © 2026 Aksh Academy. All Rights Reserved.
   </footer>
 
   <a
@@ -496,5 +529,11 @@
   >
     W
   </a>
+  <footer class="dev-footer">
+    <a href="#" class="dev-brand">
+      <img src="aura.png" alt="AURA DEVELOPERS Logo">
+      <span>Made by AURA DEVELOPER</span>
+    </a>
+  </footer>
 </body>
 </html>
