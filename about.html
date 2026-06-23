@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Akash Academy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.10), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(255,215,120,.18), transparent 24%),
+        radial-gradient(circle at 50% 85%, rgba(125,0,146,.30), transparent 34%),
+        linear-gradient(135deg, #080012 0%, #190024 36%, #420054 75%, #080012 100%);
+      color: #f8f4ff;
+      overflow-x: hidden;
+    }
+
+    .bg-orbit {
+      position: fixed;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,.06), transparent 32%),
+        radial-gradient(circle at 80% 30%, rgba(255,215,120,.12), transparent 28%),
+        radial-gradient(circle at 60% 80%, rgba(180,90,255,.18), transparent 30%);
+      filter: blur(24px);
+      opacity: .9;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbitMove 16s ease-in-out infinite alternate;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
+      padding: 30px 6vw 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: fadeDown .9s ease both;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-left: 18px;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #ffd85a;
+      transition: width .3s ease;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .layout {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 42px;
+      align-items: center;
+      min-height: calc(100vh - 180px);
+    }
+
+    .left {
+      animation: fadeLeft 1s ease both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: glowBadge 2.8s ease-in-out infinite;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffd85a;
+      box-shadow: 0 0 12px rgba(255,216,90,.7);
+    }
+
+    .title {
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.06;
+      margin-bottom: 16px;
+    }
+
+    .title span {
+      color: #ffd85a;
+      animation: textGlow 2.6s ease-in-out infinite;
+    }
+
+    .subtitle {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: rgba(245,240,255,.92);
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      font-size: .92rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+      margin-bottom: 18px;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: .88rem;
+      text-align: center;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+    }
+
+    .exp-box {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.24);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .98rem;
+      color: rgba(240,235,255,.93);
+      line-height: 1.8;
+      backdrop-filter: blur(10px);
+      animation: riseCard 1s ease both;
+    }
+
+    .exp-box strong {
+      color: #ffd85a;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 22px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      color: #24002b;
+      background: linear-gradient(135deg, #ffd85a, #f0b84b);
+      box-shadow: 0 12px 28px rgba(0,0,0,.25);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 34px rgba(0,0,0,.30);
+    }
+
+    .image-wrap {
+      position: relative;
+      width: min(360px, 80vw);
+      margin: 0 auto;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    .flames {
+      position: absolute;
+      inset: -26px;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 50% 68%, rgba(255,120,0,.92), transparent 22%),
+        radial-gradient(circle at 35% 55%, rgba(255,180,0,.72), transparent 18%),
+        radial-gradient(circle at 65% 55%, rgba(255,60,0,.66), transparent 20%),
+        radial-gradient(circle at 50% 45%, rgba(255,220,120,.42), transparent 16%);
+      filter: blur(18px);
+      opacity: .95;
+      animation: flameDance 1.8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .image-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 28px;
+      padding: 10px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,.16), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,215,120,.22), transparent 55%),
+        linear-gradient(145deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.30);
+      box-shadow:
+        0 26px 80px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.55);
+      backdrop-filter: blur(22px);
+    }
+
+    .image-inner {
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0,0,0,.15);
+    }
+
+    .image-inner img {
+      width: 100%;
+      display: block;
+      transform: scale(1.01);
+      transition: transform .5s ease;
+    }
+
+    .image-inner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,.52));
+      pointer-events: none;
+    }
+
+    .image-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .image-caption h3 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .image-caption p {
+      font-size: .88rem;
+      opacity: .92;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: .92rem;
+      color: rgba(230,225,250,.82);
+      animation: fadeUp 1s ease both;
+    }
+
+    .footer-note span {
+      color: #ffd85a;
+    }
+
+    @keyframes orbitMove {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(3%, -3%, 0) scale(1.03); }
+      100% { transform: translate3d(-2%, 2%, 0) scale(1.05); }
+    }
+
+    @keyframes glowBadge {
+      0%, 100% { box-shadow: 0 0 0 rgba(255,216,90,0); }
+      50% { box-shadow: 0 0 18px rgba(255,216,90,.45); }
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(-.5deg); }
+    }
+
+    @keyframes flameDance {
+      0%, 100% { transform: scale(1) translateY(0); opacity: .88; }
+      50% { transform: scale(1.05) translateY(-6px); opacity: 1; }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-26px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes riseCard {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 0 rgba(255,216,90,0); }
+      50% { text-shadow: 0 0 18px rgba(255,216,90,.35); }
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        min-height: auto;
+      }
+      .shell {
+        padding: 20px 5vw 40px;
+      }
+      .highlights {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .image-wrap {
+        width: min(320px, 88vw);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbit"></div>
+
+  <div class="shell">
+    <header class="nav">
+      <div class="brand">
+        <img src="logo.png" alt="Akash Academy Logo">
+        <span>Akash Academy</span>
+      </div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div class="left">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          OWNER OF AKASH ACADEMY
+        </div>
+
+        <h1 class="title">
+          Meet the <span>professional teacher</span> behind Akash Academy.
+        </h1>
+
+        <p class="subtitle">
+          Akash is a dedicated and professional teacher with more than 5 years of teaching experience,
+          guiding students with discipline, clarity, and result-oriented strategies.
+        </p>
+
+        <p class="tagline">
+          QUALIFICATION & PROFESSIONAL JOURNEY
+        </p>
+
+        <div class="highlights">
+          <div class="pill">M.Com</div>
+          <div class="pill">LL.B</div>
+          <div class="pill">B.Ed</div>
+          <div class="pill">CS Executive</div>
+          <div class="pill">5+ Years Exp.</div>
+          <div class="pill">English Intro</div>
+        </div>
+
+        <div class="exp-box">
+          <strong>Akash</strong> combines strong academic qualifications with real classroom experience.
+          At Akash Academy, he focuses on making concepts simple, developing exam strategy, and building confidence in every student.
+        </div>
+
+        <a class="back-btn" href="home.html">Back to Home</a>
+      </div>
+
+      <aside class="image-wrap">
+        <div class="flames"></div>
+        <div class="image-card">
+          <div class="image-inner">
+            <img src="aksh.png" alt="Akash - Owner of Akash Academy">
+            <div class="image-caption">
+              <h3>Akash</h3>
+              <p>Owner & Lead Teacher, Akash Academy</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="footer-note">
+      Akash Academy • <span>Guiding students with knowledge, discipline and care.</span>
+    </div>
+  </div>
+</body>
+</html>

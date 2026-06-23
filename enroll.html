@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akash Academy | Admission</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 22%),
+        radial-gradient(circle at 80% 30%, rgba(255,215,90,.14), transparent 18%),
+        radial-gradient(circle at 50% 85%, rgba(125,0,146,.20), transparent 24%),
+        linear-gradient(135deg, #120016 0%, #1d0025 35%, #4b0058 70%, #120016 100%);
+      color: #fff;
+      position: relative;
+    }
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .25;
+      animation: float 12s infinite linear;
+    }
+
+    .shape1 {
+      width: 160px;
+      height: 160px;
+      background: #ffd85a;
+      top: 10%;
+      left: -40px;
+    }
+
+    .shape2 {
+      width: 220px;
+      height: 220px;
+      background: #7d0092;
+      bottom: 8%;
+      right: -70px;
+      animation-delay: 2s;
+    }
+
+    .shape3 {
+      width: 90px;
+      height: 90px;
+      background: #ffffff;
+      top: 62%;
+      left: 12%;
+      animation-delay: 4s;
+    }
+
+    .wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      width: min(92vw, 980px);
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(18px);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      animation: cardIn .9s ease both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin-bottom: 18px;
+      animation: glowText 2.5s ease-in-out infinite;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .title {
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      animation: slideUp .9s ease .1s both;
+    }
+
+    .title span {
+      color: #ffd85a;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,.88);
+      max-width: 650px;
+      animation: slideUp .9s ease .2s both;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+      animation: floatCard 4s ease-in-out infinite;
+    }
+
+    .info-box h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #ffd85a;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,.9);
+    }
+
+    .address {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.15);
+      animation: pulseBox 2.8s ease-in-out infinite;
+    }
+
+    .address strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffd85a;
+      font-size: 1.05rem;
+    }
+
+    .buttons {
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffd85a, #f0b84b);
+      color: #2c0033;
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+    }
+
+    .btn-secondary {
+      border: 2px solid rgba(255,255,255,.6);
+      color: #fff;
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .features {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.14);
+      min-height: 120px;
+      animation: hoverUp 4s ease-in-out infinite;
+    }
+
+    .feature h4 {
+      color: #ffd85a;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .feature p {
+      color: rgba(255,255,255,.85);
+      line-height: 1.6;
+      font-size: .95rem;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      text-align: center;
+      color: rgba(255,255,255,.8);
+      font-size: .92rem;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      50% { transform: translateY(-30px) translateX(20px) rotate(180deg); }
+      100% { transform: translateY(0) translateX(0) rotate(360deg); }
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px) scale(.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowText {
+      0%, 100% { box-shadow: 0 0 0 rgba(255,216,90,0); }
+      50% { box-shadow: 0 0 22px rgba(255,216,90,.25); }
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulseBox {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    @keyframes hoverUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+
+  <div class="wrapper">
+    <div class="card">
+      <div class="badge">Admission Open</div>
+
+      <div class="hero">
+        <div>
+          <h1 class="title">For <span>Admission</span> Visit Akash Academy</h1>
+          <p class="subtitle">
+            We are creating a strong academic environment where students grow with confidence,
+            discipline, and quality guidance for a better future.
+          </p>
+
+          <div class="buttons">
+            <a class="btn btn-primary" href="tel:+919999999999">Call Now</a>
+            <a class="btn btn-secondary" href="home.html">Back to Home</a>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h3>Main Branch Address</h3>
+          <p>
+            Akash Academy Main Branch
+          </p>
+
+          <div class="address">
+            <strong>Address</strong>
+            A to Z Road, Near New Horizon Town, Muzaffarnagar
+          </div>
+
+          <p style="margin-top:16px;">
+            Visit us for counselling, admission details, and course guidance.
+          </p>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <h4>Modern Learning</h4>
+          <p>Smart study planning, classroom focus, and regular progress tracking.</p>
+        </div>
+
+        <div class="feature">
+          <h4>Expert Faculty</h4>
+          <p>Dedicated teachers for better concept understanding and exam preparation.</p>
+        </div>
+
+        <div class="feature">
+          <h4>Future Growth</h4>
+          <p>We help students build confidence, discipline, and strong performance habits.</p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Akash Academy • Shaping futures with care and excellence
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKSH Academy Premium Intro</title>
+  <style>
+    :root{
+      --purple:#5b0066;
+      --purple2:#7d0092;
+      --gold:#ffd85a;
+      --gold2:#f0b84b;
+      --white:#ffffff;
+      --dark:#160018;
+    }
+
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    html,body{
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:#120016;
+    }
+
+    body{
+      position:fixed;
+      inset:0;
+    }
+
+    .splash{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.10), transparent 34%),
+        radial-gradient(circle at 20% 20%, rgba(255,215,120,.18), transparent 20%),
+        radial-gradient(circle at 80% 80%, rgba(160,70,255,.16), transparent 22%),
+        linear-gradient(135deg, #120016 0%, #26002f 42%, #4f005d 72%, #140017 100%);
+      animation: splashOut 1s ease forwards 2.8s;
+    }
+
+    .splash::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), transparent 30%),
+        radial-gradient(circle at 30% 30%, rgba(255,214,120,.12), transparent 25%),
+        radial-gradient(circle at 70% 70%, rgba(160,70,255,.12), transparent 28%);
+      filter: blur(30px);
+      animation: splashGlow 4s ease-in-out infinite;
+    }
+
+    .splash-logo{
+      width:min(52vw, 320px);
+      position:relative;
+      z-index:1;
+      filter:
+        drop-shadow(0 18px 26px rgba(0,0,0,.30))
+        drop-shadow(0 0 18px rgba(255,255,255,.16));
+      animation: splashPop 1.1s ease both;
+    }
+
+    .splash-text{
+      position:absolute;
+      bottom:12%;
+      color:#fff;
+      letter-spacing:.22em;
+      font-size:.85rem;
+      font-weight:700;
+      text-transform:uppercase;
+      opacity:.88;
+      z-index:1;
+      animation: fadeUp 1s ease .35s both;
+    }
+
+    .scene{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      perspective:1400px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 214, 120, .16), transparent 18%),
+        radial-gradient(circle at 86% 22%, rgba(160, 70, 255, .20), transparent 20%),
+        radial-gradient(circle at 50% 85%, rgba(255, 120, 190, .14), transparent 18%),
+        linear-gradient(135deg, #120016 0%, #25002e 38%, #4d005a 68%, #16001c 100%);
+      opacity:0;
+      animation: sceneIn .8s ease forwards 2.5s;
+    }
+
+    .scene::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), transparent 30%),
+        radial-gradient(circle at 30% 30%, rgba(255,210,120,.12), transparent 25%),
+        radial-gradient(circle at 70% 70%, rgba(160,70,255,.12), transparent 28%);
+      filter: blur(30px);
+      animation: bgMove 8s ease-in-out infinite alternate;
+      z-index:0;
+    }
+
+    .orb{
+      position:absolute;
+      width:min(92vw, 980px);
+      aspect-ratio:1;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 28% 22%, rgba(255,255,255,.16), transparent 22%),
+        radial-gradient(circle at 50% 50%, #740086 0%, #5a0067 55%, #37003d 100%);
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.34),
+        inset 0 14px 18px rgba(255,255,255,.08),
+        inset 0 -24px 50px rgba(0,0,0,.24);
+      animation: orbFloat 5s ease-in-out infinite;
+      z-index:1;
+    }
+
+    .card{
+      position:relative;
+      z-index:2;
+      width:min(78vw, 560px);
+      padding:28px 24px 34px;
+      border-radius:34px;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      box-shadow:
+        0 18px 60px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.34);
+      transform-style:preserve-3d;
+      animation: cardIn .95s cubic-bezier(.2,.9,.2,1) both;
+    }
+
+    .logo-wrap{
+      position:relative;
+      transform-style:preserve-3d;
+      perspective:1200px;
+      animation: logoFloat 4.6s ease-in-out infinite;
+    }
+
+    .logo{
+      display:block;
+      width:min(48vw, 300px);
+      margin:0 auto;
+      max-width:100%;
+      transform-style:preserve-3d;
+      transform: perspective(1200px) rotateX(10deg) rotateY(-12deg);
+      filter:
+        drop-shadow(0 18px 22px rgba(0,0,0,.30))
+        drop-shadow(0 0 18px rgba(255,255,255,.16));
+      animation: logoPop 1.2s ease-out both, logoTilt 4s ease-in-out infinite;
+    }
+
+    .enter-btn{
+      margin-top:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:185px;
+      padding:16px 30px;
+      border:0;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#26002b;
+      background: linear-gradient(135deg, #fff5cf 0%, var(--gold) 40%, var(--gold2) 100%);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.24),
+        inset 0 1px 0 rgba(255,255,255,.72),
+        inset 0 -3px 8px rgba(120,72,0,.16);
+      position:relative;
+      overflow:hidden;
+      animation: btnIn .95s ease-out .7s both;
+      transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    }
+
+    .enter-btn:hover{
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .tagline{
+      margin-top:16px;
+      color:rgba(255,255,255,.94);
+      font-size:clamp(.72rem, 1.6vw, .98rem);
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      animation: fadeUp .9s ease-out 1s both;
+    }
+
+    .particles{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .particles span{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.45);
+      filter: blur(.5px);
+      opacity:.35;
+      animation: drift linear infinite;
+    }
+
+    .particles span:nth-child(1){left:10%; top:82%; width:8px; height:8px; animation-duration:12s}
+    .particles span:nth-child(2){left:22%; top:16%; width:12px; height:12px; animation-duration:16s; animation-delay:1s}
+    .particles span:nth-child(3){left:75%; top:20%; width:10px; height:10px; animation-duration:14s; animation-delay:2s}
+    .particles span:nth-child(4){left:85%; top:72%; width:7px; height:7px; animation-duration:18s; animation-delay:3s}
+    .particles span:nth-child(5){left:50%; top:10%; width:9px; height:9px; animation-duration:15s; animation-delay:1.5s}
+
+    @keyframes splashOut{0%{opacity:1; transform:scale(1)} 70%{opacity:1} 100%{opacity:0; transform:scale(1.06); visibility:hidden}}
+    @keyframes splashPop{0%{opacity:0; transform:scale(.75) rotateX(24deg)} 100%{opacity:1; transform:scale(1) rotateX(0)}}
+    @keyframes sceneIn{from{opacity:0} to{opacity:1}}
+    @keyframes cardIn{from{opacity:0; transform:translateY(36px) scale(.84) rotateX(18deg)} to{opacity:1; transform:translateY(0) scale(1) rotateX(0)}}
+    @keyframes logoPop{from{opacity:0; transform:translateY(20px) scale(.82)} to{opacity:1; transform:translateY(0) scale(1)}}
+    @keyframes btnIn{from{opacity:0; transform:translateY(16px) scale(.92)} to{opacity:1; transform:translateY(0) scale(1)}}
+    @keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:.94; transform:translateY(0)}}
+    @keyframes drift{from{transform:translateY(0) translateX(0) scale(1)} to{transform:translateY(-140vh) translateX(50px) scale(1.4)}}
+    @keyframes orbFloat{0%,100%{transform:translateY(0) rotateZ(0deg)} 50%{transform:translateY(-14px) rotateZ(1deg)}}
+    @keyframes bgMove{0%{transform:translate3d(0,0,0) scale(1)} 100%{transform:translate3d(2%, -2%, 0) scale(1.06)}}
+    @keyframes logoFloat{0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
+    @keyframes logoTilt{0%,100%{ transform: perspective(1200px) rotateX(10deg) rotateY(-12deg) translateY(0); } 50%{ transform: perspective(1200px) rotateX(14deg) rotateY(10deg) translateY(-8px); }}
+
+    @media (max-width: 600px){
+      .card{ width:min(88vw, 430px); padding:22px 18px 28px; }
+      .logo{ width:min(62vw, 240px); }
+      .enter-btn{ min-width:160px; padding:14px 24px; }
+      .splash-logo{ width:min(68vw, 260px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <img class="splash-logo" src="logo.png" alt="AKSH Academy Intro Logo" />
+    <div class="splash-text">Entering Premium Experience</div>
+  </div>
+
+  <div class="scene">
+    <div class="particles">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="orb"></div>
+
+    <div class="card">
+      <div class="logo-wrap">
+        <img class="logo" src="logo.png" alt="AKSH Academy Logo" />
+      </div>
+
+      <button class="enter-btn" onclick="goToAnimation()">ENTER</button>
+      <div class="tagline">FOR YOUNG ENTREPRENEURS</div>
+    </div>
+  </div>
+
+  <script>
+    function goToAnimation() {
+      window.location.href = "animation.html";
+    }
+  </script>
+</body>
+</html>
